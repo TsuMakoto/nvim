@@ -3,11 +3,11 @@ nnoremap j gj
 nnoremap k gk
 
 " Edit init.vim
-nnoremap <Space>ev :tabnew ~/.dotfiles/vim/init.vim<CR>
+nnoremap <Space>ev :tabnew ~/.dotfiles/nvim/init.vim<CR>
 " Reload init.vim
-nnoremap <Space>rv :source ~/.dotfiles/vim/init.vim<CR>
+nnoremap <Space>rv :source ~/.dotfiles/nvim/init.vim<CR>
 " Open vim config-dir
-nnoremap <Space>rd :NERDTreeToggle ~/.dotfiles/vim<CR>
+nnoremap <Space>rd :NERDTreeToggle ~/.dotfiles/nvim<CR>
 
 " new tab
 nnoremap <Space>tn :tabnew<CR>

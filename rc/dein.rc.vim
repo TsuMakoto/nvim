@@ -14,8 +14,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   " set toml-path
-  let s:toml_dir = expand('~/.dotfiles/vim/rc/toml') 
- 
+  let s:toml_dir = expand('~/.dotfiles/nvim/rc/toml')
+
   if !has('nvim')
     " nvimプラグイン用
     call dein#add('roxma/nvim-yarp')
@@ -36,7 +36,7 @@ if dein#load_state('~/.cache/dein')
   call dein#load_toml(s:toml_dir . '/dein_lang.toml', {'lazy': 0})
   " lazy load toml files
   call dein#load_toml(s:toml_dir . '/dein_lazy.toml', {'lazy': 1})
-	
+
   " Required:
   call dein#end()
   call dein#save_state()
