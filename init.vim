@@ -29,7 +29,7 @@ autocmd ColorScheme * highlight Visual guibg=#666666
 " colorscheme dracula
 " =============== 色の設定 ===============
 
-let g:config_dir = '~/.dotfiles/nvim'
+let g:config_dir = '~/.config/nvim'
 let g:rc_dir = g:config_dir . '/rc'
 
 " rcファイル読み込み関数

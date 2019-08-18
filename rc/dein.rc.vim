@@ -14,7 +14,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   " set toml-path
-  let s:toml_dir = expand('~/.dotfiles/nvim/rc/toml')
+  let s:toml_dir = expand('~/.config/nvim/rc/toml')
 
   if !has('nvim')
     " nvimプラグイン用
