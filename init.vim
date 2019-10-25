@@ -1,4 +1,13 @@
-" set number
+" ---------------------------------------------------------------- variable
+let g:pyenv_root = $HOME . '/.pyenv'
+let g:rbenv_root = $HOME . '/.rbenv'
+let g:cache = $HOME . '/.cache'
+let g:dein_cache = g:cache . '/dein'
+let g:repos = g:dein_cache . '/repos/github.com'
+let g:dein_git = 'https://github.com/Shougo/dein.vim'
+let g:config_dir = $HOME . '/.config/nvim'
+
+" ---------------------------------------------------------------- initialized
 set encoding=utf-8
 set expandtab
 set tabstop=2
@@ -6,66 +15,112 @@ set shiftwidth=2
 set clipboard=unnamed
 set foldmethod=marker
 autocmd BufWritePre * :%s/\s\+$//ge
+autocmd BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
 
-" =============== 色の設定 ===============
-" =============== jellybeans ===============
-" colorscheme jellybeans
-" set cursorline
-" autocmd ColorScheme * highlight CursorLine ctermbg=236
-" autocmd ColorScheme * highlight Normal ctermbg=none
-" autocmd ColorScheme * highlight LineNr ctermbg=none
-" autocmd ColorScheme * highlight NonText ctermbg=none
-" autocmd ColorScheme * highlight Comment ctermfg=250
-" autocmd ColorScheme * highlight Visual ctermbg=240
-" autocmd ColorScheme * highlight Statement ctermfg=104
-" =============== tender ===============
-colorscheme tender
-syntax enable
-let g:airline_theme = 'tender'
-autocmd ColorScheme * highlight Comment guifg=#a09f9f
-autocmd ColorScheme * highlight Visual guibg=#666666
-" =============== dracula ==============
-" syntax on
-" colorscheme dracula
-" =============== 色の設定 ===============
+" ---------------------------------------------------------------- mapping
+" Release keymappings for plug-in.
+nnoremap j gj
+nnoremap k gk
 
-let g:config_dir = '~/.config/nvim'
-let g:rc_dir = g:config_dir . '/rc'
+" Edit init.vim
+nnoremap <Space>ev :tabnew ~/.config/nvim/init.vim<CR>
+" Reload init.vim
+nnoremap <Space>rv :source ~/.config/nvim/init.vim<CR>
+" Open vim config-dir
+nnoremap <Space>rd :NERDTreeToggle ~/.config/nvim<CR>
 
-" rcファイル読み込み関数
-function! s:source_rc(rc_file_name)
-  let rc_file = expand(g:rc_dir . '/' . a:rc_file_name)
-  if filereadable(rc_file)
-    execute 'source' rc_file
-  endif
-endfunction
+" new tab
+nnoremap <Space>tn :tabnew<CR>
 
-" dein用キャッシュディレクトリ作成
-let $CACHE = expand('~/.cache')
+" resize tab
+nnoremap <C-w>; <C-w>+
 
-if !isdirectory(expand($CACHE))
- call mkdir(expand($CACHE), 'p')
+" Skip move
+nnoremap H ^
+noremap L $
+xnoremap H ^
+xnoremap L $
+
+" escape terminal mode
+tnoremap <C-[> <C-\><C-n>
+
+" search off
+nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>
+
+" move display
+nnoremap <Left>  <C-w>h
+nnoremap <Down>  <C-w>j
+nnoremap <Up>    <C-w>k
+nnoremap <Right> <C-w>l
+nnoremap <S-Left>  <C-w>H
+nnoremap <S-Down>  <C-w>J
+nnoremap <S-Up>    <C-w>K
+nnoremap <S-Right> <C-w>L
+
+" ---------------------------------------------------------------- rcファイル読み込み
+" function! s:source_rc(rc_file_name)
+"   let rc_file = expand(g:g:config_dir . '/rc' . a:rc_file_name)
+"   if filereadable(rc_file)
+"     execute 'source' rc_file
+"   endif
+" endfunction
+
+" ---------------------------------------------------------------- load python
+if isdirectory(g:pyenv_root)
+  let g:python_host_prog = g:pyenv_root . '/versions/2.7.16/bin/python'
+  let g:python3_host_prog = g:pyenv_root . '/versions/3.7.3/bin/python'
 endif
 
-let $PYENV_ROOT = $HOME . '/.pyenv/versions'
-let g:python_host_prog = $PYENV_ROOT . '/2.7.16/bin/python'
-let g:python3_host_prog = $PYENV_ROOT . '/3.7.3/bin/python'
-let g:ruby_host_prog = $HOME . '/.rbenv/shims/ruby'
+" ---------------------------------------------------------------- load ruby
+if isdirectory(g:pyenv_root)
+  let g:ruby_host_prog = g:rbenv_root . '/shims/ruby'
+endif
 
-" load dein.
+" ---------------------------------------------------------------- load dein.
+if !isdirectory(expand(g:cache))
+  call mkdir(expand(g:cache), 'p')
+endif
+
 let s:dein_dir = finddir('dein.vim', '.;')
 if s:dein_dir != '' || &runtimepath !~ '/dein.vim'
   if s:dein_dir == '' && &runtimepath !~ '/dein.vim'
-    let s:dein_dir = expand('$CACHE/dein')
-        \. '/repos/github.com/Shougo/dein.vim'
+    let s:dein_dir = expand(g:dein_cache) . '/repos/github.com/Shougo/dein.vim'
     if !isdirectory(s:dein_dir)
-      execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
+      execute '!git clone' g:dein_git s:dein_dir
     endif
   endif
   execute 'set runtimepath^=' . substitute(
               \fnamemodify(s:dein_dir, ':p') , '/$', '', '')
 endif
 
-call s:source_rc('dein.rc.vim')
-call s:source_rc('mappings.rc.vim')
-call s:source_rc('surround.vim')
+" ---------------------------------------------------------------- configuration dein
+if &compatible
+  set nocompatible
+endif
+
+" Required:
+execute 'set runtimepath+=' . g:repos . '/Shougo/dein.vim'
+if dein#load_state(g:dein_cache)
+  call dein#begin(g:dein_cache)
+  " Let dein manage dein
+  call dein#add(g:repos . '/Shougo/dein.vim')
+  " load toml files
+  call dein#load_toml(g:config_dir . '/dein.toml', {'lazy': 0})
+  call dein#end()
+  call dein#save_state()
+endif
+
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+" ---------------------------------------------------------------- colorscheme
+" custom example: autocmd ColorScheme * highlight CursorLine ctermbg=236
+colorscheme orange-moon
+
+" ---------------------------------------------------------------- load surround.vim
+execute 'source' (g:config_dir . '/plugins/surround.vim')

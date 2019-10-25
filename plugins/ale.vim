@@ -29,21 +29,22 @@ let g:ale_linters = {
 \   'html' : [],
 \   'css' : ['stylelint'],
 \   'javascript' : ['eslint'],
-\   'ruby' : ['rubocop']
-\   
+\   'ruby' : ['rubocop'],
+\   'dockerfile' : ['hadolint']
+\
 \}
 
 " ソースコード自動整形
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'python': ['autopep8', 'isort'],
-\   'ruby': ['rubocop']
+\   'ruby': ['rubocop'],
 \   'markdown': [
 \   {
-\       buffer, 
-\       lines -> 
+\       buffer,
+\       lines ->
 \       {
-\           'command': 'textlint -c ~/.config/textlintrc -o /dev/null --fix --no-color --quiet %t', 
+\           'command': 'textlint -c ~/.config/textlintrc -o /dev/null --fix --no-color --quiet %t',
 \           'read_temporary_file': 1
 \       }
 \   }
