@@ -102,9 +102,6 @@ endif
 execute 'set runtimepath+=' . g:repos . '/Shougo/dein.vim'
 if dein#load_state(g:dein_cache)
   call dein#begin(g:dein_cache)
-  " Let dein manage dein
-  call dein#add(g:repos . '/Shougo/dein.vim')
-  " load toml files
   call dein#load_toml(g:config_dir . '/dein.toml', {'lazy': 0})
   call dein#end()
   call dein#save_state()
