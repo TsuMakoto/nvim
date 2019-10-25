@@ -213,7 +213,7 @@ build = 'make'
 repo = 'thinca/vim-quickrun'
 lazy = '1'
 depends = ['vimproc.vim']
-on_ft = ['python' 'ruby']
+on_ft = ['python', 'ruby']
 hook_add = '''
   " Running vimproc
   " Showing success is buffer and error is quickfix
