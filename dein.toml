@@ -44,7 +44,7 @@ repo = 'tyru/eskk.vim'
 hook_add = '''
   let g:eskk#directory = "~/.eskk"
   let g:eskk#dictionary = {
-  \    'path': "~/.skk-jisyo",
+  \    'path': "~/.dotfiles/.skk-jisyo",
   \    'sorted': 0,
   \    'encoding': 'utf-8',
   \  }
