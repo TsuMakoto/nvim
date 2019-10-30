@@ -30,7 +30,8 @@ let g:ale_linters = {
 \   'css' : ['stylelint'],
 \   'javascript' : ['eslint'],
 \   'ruby' : ['rubocop'],
-\   'dockerfile' : ['hadolint']
+\   'dockerfile' : ['hadolint'],
+\   'vue': ['eslint']
 \
 \}
 

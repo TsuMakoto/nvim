@@ -242,7 +242,7 @@ hook_add = '''
 [[plugins]]
 repo = 'w0rp/ale'
 lazy = '1'
-on_ft = ['python', 'html', 'css', 'javascript', 'ruby', 'dockerfile']
+on_ft = ['python', 'html', 'css', 'javascript', 'ruby', 'dockerfile', 'vue']
 hook_source = '''
   execute 'source' (g:config_dir . '/plugins/ale.vim')
 '''
