@@ -1,6 +1,4 @@
 " ---------------------------------------------------------------- variable
-let g:pyenv_root = $HOME . '/.pyenv'
-let g:rbenv_root = $HOME . '/.rbenv'
 let g:cache = $HOME . '/.cache'
 let g:dein_cache = g:cache . '/dein'
 let g:repos = g:dein_cache . '/repos/github.com'
@@ -67,14 +65,14 @@ nnoremap <S-Right> <C-w>L
 " endfunction
 
 " ---------------------------------------------------------------- load python
-if isdirectory(g:pyenv_root)
-  let g:python_host_prog = g:pyenv_root . '/versions/2.7.16/bin/python'
-  let g:python3_host_prog = g:pyenv_root . '/versions/3.7.3/bin/python'
+if isdirectory($PYENV_ROOT)
+  let g:python_host_prog = $PYENV_ROOT . '/versions/2.7.16/bin/python'
+  let g:python3_host_prog = $PYENV_ROOT . '/versions/3.8.0/bin/python'
 endif
 
 " ---------------------------------------------------------------- load ruby
-if isdirectory(g:pyenv_root)
-  let g:ruby_host_prog = g:rbenv_root . '/shims/ruby'
+if isdirectory($PYENV_ROOT)
+  let g:ruby_host_prog = $RBENV_ROOT . '/shims/ruby'
 endif
 
 " ---------------------------------------------------------------- load dein.
