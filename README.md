@@ -4,9 +4,8 @@ Version control of vim script for neovim
 # Required
 - works with the version of neovim 0.4.0.
 - pyenv
-  - anaconda3-5.3.1
-    - python2.x (this env named nvim2)
-    - python3.x (this env named nvim3)
+  - python2.x (this env named nvim2)
+  - python3.x (this env named nvim3)
 
 - git
 
