@@ -21,7 +21,7 @@ let g:ale_open_list = 0
 let g:ale_keep_list_window_open = 0
 
 " rubocopをbendleで使う
-let g:ale_ruby_rubocop_executable = 'bundle'
+" let g:ale_ruby_rubocop_executable = 'bundle'
 
 " 有効にするlinter
 let g:ale_linters = {

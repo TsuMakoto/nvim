@@ -55,6 +55,40 @@ nnoremap <S-Left>  <C-w>H
 nnoremap <S-Down>  <C-w>J
 nnoremap <S-Up>    <C-w>K
 nnoremap <S-Right> <C-w>L
+inoremap <Left>  <C-[><C-w>h
+inoremap <Down>  <C-[><C-w>j
+inoremap <Up>    <C-[><C-w>k
+inoremap <Right> <C-[><C-w>l
+inoremap <S-Left>  <C-[><C-w>H
+inoremap <S-Down>  <C-[><C-w>J
+inoremap <S-Up>    <C-[><C-w>K
+inoremap <S-Right> <C-[><C-w>L
+
+" tabular
+xnoremap <tab> :Tab /
+
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> <space>w  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+augroup vimrc-set-regexpengine
+  autocmd!
+  autocmd BufNewFile,BufReadPre *.rb,*.erb setlocal regexpengine=1
+augroup END
 
 " ---------------------------------------------------------------- rcファイル読み込み
 " function! s:source_rc(rc_file_name)
@@ -102,6 +136,7 @@ execute 'set runtimepath+=' . g:repos . '/Shougo/dein.vim'
 if dein#load_state(g:dein_cache)
   call dein#begin(g:dein_cache)
   call dein#load_toml(g:config_dir . '/dein.toml', {'lazy': 0})
+  call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
   call dein#end()
   call dein#save_state()
 endif
@@ -116,7 +151,7 @@ endif
 
 " ---------------------------------------------------------------- colorscheme
 " custom example: autocmd ColorScheme * highlight CursorLine ctermbg=236
-colorscheme orange-moon
+colorscheme dracula
 
 " ---------------------------------------------------------------- load surround.vim
 execute 'source' (g:config_dir . '/plugins/surround.vim')

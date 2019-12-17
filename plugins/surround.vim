@@ -8,7 +8,7 @@ if exists("g:loaded_surround") || &cp || v:version < 700
 endif
 let g:loaded_surround = 1
 
-" Input functions 
+" Input functions
 
 function! s:getchar()
     let c = getchar()
@@ -55,9 +55,9 @@ function! s:redraw()
     return ""
 endfunction
 
-" 
+"
 
-" Wrapping functions 
+" Wrapping functions
 
 function! s:extractbefore(str)
     if a:str =~ '\r'
@@ -165,11 +165,14 @@ function! s:wrap(string,char,type,removed,special)
         let before = ':'
         let after = ''
     elseif newchar ==# '='
-        let before = '<%= ' 
+        let before = '<%= '
         let after = ' %>'
     elseif newchar ==# '%'
         let before = '<% '
         let after = ' %>'
+    elseif newchar ==# '-'
+        let before = '<!-- '
+        let after = ' -->'
     elseif newchar =~# "[tT\<C-T><]"
         let dounmapp = 0
         let dounmapb = 0
@@ -312,9 +315,9 @@ function! s:wrapreg(reg,char,removed,special)
     let new = s:wrap(orig,a:char,type,a:removed,a:special)
     call setreg(a:reg,new,type)
 endfunction
-" 
+"
 
-function! s:insert(...) " 
+function! s:insert(...) "
     " Optional argument causes the result to appear on 3 lines, not 1
     let linemode = a:0 ? a:1 : 0
     let char = s:inputreplacement()
@@ -355,15 +358,15 @@ function! s:insert(...) "
     let @@ = reg_save
     let &clipboard = cb_save
     return "\<Del>"
-endfunction " 
+endfunction "
 
-function! s:reindent() " 
+function! s:reindent() "
     if exists("b:surround_indent") ? b:surround_indent : (!exists("g:surround_indent") || g:surround_indent)
         silent norm! '[=']
     endif
-endfunction " 
+endfunction "
 
-function! s:dosurround(...) " 
+function! s:dosurround(...) "
     let scount = v:count1
     let char = (a:0 ? a:1 : s:inputtarget())
     let spc = ""
@@ -475,9 +478,9 @@ function! s:dosurround(...) "
     else
         silent! call repeat#set("\<Plug>C".(a:0 > 2 && a:3 ? "S" : "s")."urround".char.newchar.s:input,scount)
     endif
-endfunction " 
+endfunction "
 
-function! s:changesurround(...) " 
+function! s:changesurround(...) "
     let a = s:inputtarget()
     if a == ""
         return s:beep()
@@ -487,9 +490,9 @@ function! s:changesurround(...) "
         return s:beep()
     endif
     call s:dosurround(a,b,a:0 && a:1)
-endfunction " 
+endfunction "
 
-function! s:opfunc(type, ...) abort " 
+function! s:opfunc(type, ...) abort "
     if a:type ==# 'setup'
         let &opfunc = matchstr(expand('<sfile>'), '<SNR>\w\+$')
         return 'g@'
@@ -562,9 +565,9 @@ function! s:opfunc2(...) abort
         return 'g@'
     endif
     call s:opfunc(a:1, 1)
-endfunction " 
+endfunction "
 
-function! s:closematch(str) " 
+function! s:closematch(str) "
     " Close an open (, {, [, or < on the command line.
     let tail = matchstr(a:str,'.[^\[\](){}<>]*$')
     if tail =~ '^\[.\+'
@@ -578,7 +581,7 @@ function! s:closematch(str) "
     else
         return ""
     endif
-endfunction " 
+endfunction "
 
 nnoremap <silent> <Plug>SurroundRepeat .
 nnoremap <silent> <Plug>Dsurround  :<C-U>call <SID>dosurround(<SID>inputtarget())<CR>
