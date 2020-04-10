@@ -38,7 +38,7 @@ let g:ale_linters = {
 " ソースコード自動整形
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
-\   'vue' : ['eslint']
+\   'vue' : ['eslint'],
 \   'python': ['autopep8', 'isort'],
 \   'ruby': ['rubocop'],
 \   'markdown': [

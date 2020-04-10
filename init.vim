@@ -25,8 +25,14 @@ nnoremap k gk
 nnoremap <Space>ev :tabnew ~/.config/nvim/init.vim<CR>
 " Reload init.vim
 nnoremap <Space>rv :source ~/.config/nvim/init.vim<CR>
-" Open vim config-dir
-nnoremap <Space>rd :NERDTreeToggle ~/.config/nvim<CR>
+
+" Edit .zshrc
+nnoremap <Space>ze :tabnew ~/.dotfiles/.zshrc<CR>
+" Reload init.vim
+nnoremap <Space>rz :source ~/.dotfiles/.zshrc<CR>
+
+" Open .dotfiles dirrectory
+nnoremap <Space>rd :NERDTreeToggle ~/.dotfiles<CR>
 
 " new tab
 nnoremap <Space>tn :tabnew<CR>
@@ -85,10 +91,20 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
+nmap <Space>ee :e ++enc=utf-8<CR>
+
+" fzf search
+nnoremap <C-p> :FZFFileList<CR>
+command! FZFFileList call fzf#run(fzf#wrap({
+            \ 'source': 'find . -type d -name .git -prune -o ! -name .DS_Store',
+            \ 'down': '40%'}))
+
+autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead Dockerfile* setf dockerfile
 augroup vimrc-set-regexpengine
   autocmd!
   autocmd BufNewFile,BufReadPre *.rb,*.erb setlocal regexpengine=1
-augroup END
+augroup end
 
 " ---------------------------------------------------------------- rcファイル読み込み
 " function! s:source_rc(rc_file_name)
@@ -105,7 +121,7 @@ if isdirectory($PYENV_ROOT)
 endif
 
 " ---------------------------------------------------------------- load ruby
-if isdirectory($PYENV_ROOT)
+if isdirectory($RBENV_ROOT)
   let g:ruby_host_prog = $RBENV_ROOT . '/shims/ruby'
 endif
 
@@ -151,7 +167,20 @@ endif
 
 " ---------------------------------------------------------------- colorscheme
 " custom example: autocmd ColorScheme * highlight CursorLine ctermbg=236
-colorscheme dracula
+" +++ happy_hacking +++
+" autocmd ColorScheme * set hlsearch
+" autocmd ColorScheme * highlight Search ctermbg=gray
+" autocmd ColorScheme * highlight Search guibg=gray
+" +++ happy_hacking +++
+
+" colorscheme one
+
+let g:neodark#use_256color = 1
+let g:neodark#solid_vertsplit = 1
+let g:lightline = {}
+let g:lightline.colorscheme = 'neodark'
+let g:neodark#use_custom_terminal_theme = 1
+colorscheme neodark
 
 " ---------------------------------------------------------------- load surround.vim
 execute 'source' (g:config_dir . '/plugins/surround.vim')

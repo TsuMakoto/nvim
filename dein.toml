@@ -3,8 +3,16 @@
 repo = 'Shougo/dein.vim'
 
 # -------------------------------------------------- ファイル検索
+# [[plugins]]
+# repo = 'ctrlpvim/ctrlp.vim'
+
 [[plugins]]
-repo = 'ctrlpvim/ctrlp.vim'
+repo = 'junegunn/fzf'
+build = './install --all'
+
+###fzf.vim
+[[plugins]]
+repo = 'junegunn/fzf.vim'
 
 # -------------------------------------------------- ファイルエクスプローラー
 [[plugins]]
@@ -29,6 +37,10 @@ hook_add = 'let g:lexima_enable_basic_rules = 1'
 repo = 'vim-airline/vim-airline'
 hook_add = "let g:airline_powerline_fonts = 1"
 hook_add = "set laststatus=2"
+
+# -------------------------------------------------- lightline
+[[plugins]]
+repo = 'itchyny/lightline.vim'
 
 # -------------------------------------------------- indent
 [[plugins]]
@@ -197,6 +209,17 @@ repo = 'leafgarland/typescript-vim'
 # -------------------------------------------------- vue color scheme
 [[plugins]]
 repo = 'posva/vim-vue'
+
+# ---------------------------------------------------- nginx color schemes
+[[plugins]]
+repo = 'chr4/nginx.vim'
+
+# ---------------------------------------------------- colors
+[[plugins]]
+repo = 'sainnhe/gruvbox-material'
+
+[[plugins]]
+repo = 'KeitaNakamura/neodark.vim'
 
 # ------------------------------------------------ <Leader>c + なんかでコメントできるやーつ
 [[plugins]]
