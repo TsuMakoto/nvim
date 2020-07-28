@@ -15,6 +15,7 @@ set clipboard+=unnamedplus
 set foldmethod=marker
 autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
 " ---------------------------------------------------------------- mapping
 " Release keymappings for plug-in.
@@ -92,6 +93,8 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 nmap <leader>rn <Plug>(coc-rename)
 
 nmap <Space>ee :e ++enc=utf-8<CR>
+
+nmap <F12> :TagbarToggle<CR>
 
 " fzf search
 nnoremap <C-p> :FZFFileList<CR>

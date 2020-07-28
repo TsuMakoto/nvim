@@ -27,6 +27,10 @@ repo = 'airblade/vim-gitgutter'
 repo = 'cohama/lexima.vim'
 hook_add = 'let g:lexima_enable_basic_rules = 1'
 
+# -------------------------------------------------- ctag
+[[plugins]]
+repo = 'majutsushi/tagbar'
+
 # -------------------------------------------------- gtag
 # [[plugins]]
 # repo = 'jsfaint/gen_tags.vim'
@@ -205,6 +209,8 @@ repo = 'kchmck/vim-coffee-script'
 # -------------------------------------------------- type script color scheme
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
+[[plugins]]
+repo = 'peitalin/vim-jsx-typescript'
 
 # -------------------------------------------------- vue color scheme
 [[plugins]]
