@@ -14,6 +14,15 @@ build = './install --all'
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 
+# -------------------------------------------------- テンプレート作成
+[[plugins]]
+repo = 'mattn/vim-sonictemplate'
+hook_add = '''
+  let g:sonictemplate_vim_template_dir = [
+  \ '$HOME/.config/nvim/plugins/template',
+  \]
+'''
+
 # -------------------------------------------------- ファイルエクスプローラー
 [[plugins]]
 repo = 'scrooloose/nerdtree'
@@ -152,6 +161,13 @@ repo = 'Shougo/neco-vim'
 # -------------------------------------------------- Julia補完
 [[plugins]]
 repo = 'JuliaEditorSupport/julia-vim'
+
+# -------------------------------------------------- terraform
+[[plugins]]
+repo = 'hashivim/vim-terraform'
+hook_source = """
+  let g:terraform_fmt_on_save=1
+"""
 
 # -------------------------------------------------- tabnine
 # [[plugins]]

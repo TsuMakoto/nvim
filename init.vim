@@ -17,7 +17,31 @@ autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
+" ---------------------------------------------------------------- language server
+" enable ncm2 for all buffers
+" autocmd BufEnter * call ncm2#enable_for_buffer()
+"
+" " IMPORTANT: :help Ncm2PopupOpen for more information
+" set completeopt=noinsert,menuone,noselect
+" let g:default_julia_version = '1.4'
+" let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_serverCommands = {
+" \   'julia': ['julia', '--startup-file=no', '--history-file=no', '-e', '
+" \       using LanguageServer;
+" \       using Pkg;
+" \       import StaticLint;
+" \       import SymbolServer;
+" \       env_path = dirname(Pkg.Types.Context().env.project_file);
+" \       debug = false;
+" \
+" \       server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, "");
+" \       server.runlinter = true;
+" \       run(server);
+" \   ']
+" \ }
+
 " ---------------------------------------------------------------- mapping
+
 " Release keymappings for plug-in.
 nnoremap j gj
 nnoremap k gk
@@ -109,6 +133,10 @@ augroup vimrc-set-regexpengine
   autocmd BufNewFile,BufReadPre *.rb,*.erb setlocal regexpengine=1
 augroup end
 
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
 " ---------------------------------------------------------------- rcファイル読み込み
 " function! s:source_rc(rc_file_name)
 "   let rc_file = expand(g:g:config_dir . '/rc' . a:rc_file_name)
@@ -120,12 +148,12 @@ augroup end
 " ---------------------------------------------------------------- load python
 if isdirectory($PYENV_ROOT)
   let g:python_host_prog = $PYENV_ROOT . '/versions/2.7.16/bin/python'
-  let g:python3_host_prog = $PYENV_ROOT . '/versions/3.8.0/bin/python'
+  let g:python3_host_prog = $PYENV_ROOT . '/versions/3.6.0/bin/python'
 endif
 
 " ---------------------------------------------------------------- load ruby
 if isdirectory($RBENV_ROOT)
-  let g:ruby_host_prog = $RBENV_ROOT . '/shims/ruby'
+  let g:ruby_host_prog = $RBENV_ROOT . '/versions/2.7.1/bin/neovim-ruby-host'
 endif
 
 " ---------------------------------------------------------------- load dein.
