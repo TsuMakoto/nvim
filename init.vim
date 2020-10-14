@@ -13,6 +13,7 @@ set shiftwidth=2
 set clipboard=unnamed
 set clipboard+=unnamedplus
 set foldmethod=marker
+set shell=zsh
 autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
