@@ -147,13 +147,13 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " ---------------------------------------------------------------- load python
 if isdirectory($PYENV_ROOT)
-  let g:python_host_prog = $PYENV_ROOT . '/versions/2.7.16/bin/python'
-  let g:python3_host_prog = $PYENV_ROOT . '/versions/3.6.0/bin/python'
+  let g:python_host_prog =  $PYENV_V2_PATH=="" ? $PYENV_ROOT . '/versions/2.7.16/bin/python' : $PYENV_V2_PATH
+  let g:python3_host_prog = $PYENV_V3_PATH=="" ? $PYENV_ROOT . '/versions/3.6.0/bin/python' : $PYENV_V3_PATH
 endif
 
 " ---------------------------------------------------------------- load ruby
 if isdirectory($RBENV_ROOT)
-  let g:ruby_host_prog = $RBENV_ROOT . '/versions/2.7.1/bin/neovim-ruby-host'
+  let g:ruby_host_prog = $RBENV_PATH=="" ? $RBENV_ROOT . '/versions/2.7.1/bin/neovim-ruby-host' : $RBENV_V_PATH
 endif
 
 " ---------------------------------------------------------------- load dein.
