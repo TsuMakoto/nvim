@@ -243,6 +243,9 @@ repo = 'sainnhe/gruvbox-material'
 [[plugins]]
 repo = 'KeitaNakamura/neodark.vim'
 
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+
 # ------------------------------------------------ <Leader>c + なんかでコメントできるやーつ
 [[plugins]]
 repo = 'scrooloose/nerdcommenter'
@@ -309,3 +312,9 @@ repo = 'rhysd/clever-f.vim'
 # -------------------------------------------------- 符号で揃える
 [[plugins]]
 repo='godlygeek/tabular'
+
+# -------------------------------------------------- デバッガ
+[[plugins]]
+repo = "puremourning/vimspector"
+on_ft = ["python", "javascript"]
+build = "./install_gadget.py --enable-python --force-enable-node"

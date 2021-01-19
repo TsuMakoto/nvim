@@ -28,7 +28,7 @@ let g:ale_linters = {
 \	'python' : ['flake8'],
 \   'html' : [],
 \   'css' : ['stylelint'],
-\   'javascript' : ['eslint'],
+\   'javascript' : ['eslint', 'prettier'],
 \   'typescript' : ['eslint'],
 \   'ruby' : ['rubocop'],
 \   'dockerfile' : ['hadolint'],

@@ -4,6 +4,7 @@ let g:dein_cache = g:cache . '/dein'
 let g:repos = g:dein_cache . '/repos/github.com'
 let g:dein_git = 'https://github.com/Shougo/dein.vim'
 let g:config_dir = $HOME . '/.config/nvim'
+let mapleader = ","
 
 " ---------------------------------------------------------------- initialized
 set encoding=utf-8

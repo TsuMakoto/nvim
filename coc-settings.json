@@ -8,13 +8,18 @@
             "-e",
             "using LanguageServer; using Pkg; import StaticLint; import SymbolServer; env_path = ENV[\"PWD\"]; server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, \"\"); server.runlinter = true; run(server);"
          ],
-         "filetypes":[
-            "julia"
-         ]
+         "filetypes":["julia" ]
       },
       "terraform": {
         "command": "terraform-lsp",
         "filetypes": ["terraform"],
+        "initializationOptions": {}
+      },
+      "ruby": {
+        "command": "steep",
+        "args": ["langserver", "--steepfile=./Steepfile"],
+        "filetypes": ["ruby"],
+        "rootPatterns": ["Steepfile"],
         "initializationOptions": {}
       }
     }
