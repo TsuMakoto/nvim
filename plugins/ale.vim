@@ -29,17 +29,18 @@ let g:ale_linters = {
 \   'html' : [],
 \   'css' : ['stylelint'],
 \   'javascript' : ['eslint', 'prettier'],
-\   'typescript' : ['eslint'],
+\   'typescript' : ['eslint', 'prettier'],
 \   'ruby' : ['rubocop'],
 \   'dockerfile' : ['hadolint'],
-\   'vue': ['eslint']
+\   'vue': ['eslint', 'prettier']
 \
 \}
 
 " ソースコード自動整形
 let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'vue' : ['eslint'],
+\   'javascript': ['eslint', 'prettier'],
+\   'typescript': ['eslint', 'prettier'],
+\   'vue' : ['eslint', 'prettier'],
 \   'python': ['autopep8', 'isort'],
 \   'ruby': ['rubocop'],
 \   'markdown': [
