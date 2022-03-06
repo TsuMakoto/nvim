@@ -21,7 +21,7 @@ let g:ale_open_list = 0
 let g:ale_keep_list_window_open = 0
 
 " rubocopをbendleで使う
-" let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_ruby_rubocop_executable = 'bundle'
 
 " 有効にするlinter
 let g:ale_linters = {
@@ -44,15 +44,15 @@ let g:ale_fixers = {
 \   'python': ['autopep8', 'isort'],
 \   'ruby': ['rubocop'],
 \   'markdown': [
-\   {
-\       buffer,
-\       lines ->
-\       {
-\           'command': 'textlint -c ~/.config/textlintrc -o /dev/null --fix --no-color --quiet %t',
-\           'read_temporary_file': 1
-\       }
-\   }
-\ ],
+\     {
+\         buffer,
+\         lines ->
+\         {
+\             'command': 'textlint -c ~/.config/textlintrc -o /dev/null --fix --no-color --quiet %t',
+\             'read_temporary_file': 1
+\         }
+\     }
+\   ]
 \ }
 " 保存がかけられるたびに自動整形
 let g:ale_fix_on_save = 1

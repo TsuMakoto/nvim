@@ -150,12 +150,12 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 " ---------------------------------------------------------------- load python
 if isdirectory($PYENV_ROOT)
   let g:python_host_prog =  $PYENV_V2_PATH=="" ? $PYENV_ROOT . '/versions/2.7.16/bin/python' : $PYENV_V2_PATH
-  let g:python3_host_prog = $PYENV_V3_PATH=="" ? $PYENV_ROOT . '/versions/3.6.0/bin/python' : $PYENV_V3_PATH
+  let g:python3_host_prog = $PYENV_V3_PATH=="" ? $PYENV_ROOT . '/versions/3.9.6/bin/python' : $PYENV_V3_PATH
 endif
 
 " ---------------------------------------------------------------- load ruby
 if isdirectory($RBENV_ROOT)
-  let g:ruby_host_prog = $RBENV_PATH=="" ? $RBENV_ROOT . '/versions/2.7.1/bin/neovim-ruby-host' : $RBENV_V_PATH
+  let g:ruby_host_prog = $RBENV_PATH=="" ? $RBENV_ROOT . '/versions/3.0.2/bin/neovim-ruby-host' : $RBENV_V_PATH
 endif
 
 " ---------------------------------------------------------------- load dein.
@@ -208,12 +208,28 @@ endif
 
 " colorscheme one
 
-let g:neodark#use_256color = 1
-let g:neodark#solid_vertsplit = 1
-let g:lightline = {}
-let g:lightline.colorscheme = 'neodark'
-let g:neodark#use_custom_terminal_theme = 1
-colorscheme neodark
+" let g:neodark#use_256color = 1
+" let g:neodark#solid_vertsplit = 1
+" let g:lightline = {}
+" let g:lightline.colorscheme = 'neodark'
+" let g:neodark#use_custom_terminal_theme = 1
+" colorscheme neodark
+
+" Unified color scheme (default: dark)
+let g:seoul256_background = 235
+colo seoul256
+
+" ------------------------------------------------------------------- ejs
+autocmd BufNewFile,BufRead *.(ejs|_ejs|t) set filetype=ejs
+
+function! s:DetectEjs()
+  if getline(1) =~ '^#!.*\<ejs\>'
+    set filetype=ejs
+  endif
+endfunction
+
+autocmd BufNewFile,BufRead * call s:DetectEjs()
+
 
 " ---------------------------------------------------------------- load surround.vim
 execute 'source' (g:config_dir . '/plugins/surround.vim')

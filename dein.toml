@@ -31,6 +31,16 @@ repo = 'scrooloose/nerdtree'
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
+[[plugins]]
+repo = 'sjl/gundo.vim'
+
+# -------------------------------------------------- git
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'junegunn/gv.vim'
+
 # -------------------------------------------------- かっこ補完
 [[plugins]]
 repo = 'cohama/lexima.vim'
@@ -69,7 +79,7 @@ repo = 'tyru/eskk.vim'
 hook_add = '''
   let g:eskk#directory = "~/.eskk"
   let g:eskk#dictionary = {
-  \    'path': "~/.dotfiles/.skk-jisyo",
+  \    'path': "~/.eskk/.skk-jisyo",
   \    'sorted': 0,
   \    'encoding': 'utf-8',
   \  }
@@ -108,6 +118,9 @@ hook_add = '''
     map <Leader>k <Plug>(easymotion-k)
 '''
 
+[[plugins]]
+repo = 'wincent/ferret'
+
 # -------------------------------------------------- deoplete
 # [[plugins]]
 # repo = 'Shougo/deoplete.nvim'
@@ -125,6 +138,10 @@ repo = 'tpope/vim-rails'
 # -------------------------------------------------- Ruby補完
 [[plugins]]
 repo = 'takkii/Bignyanco'
+
+# -------------------------------------------------- Ruby
+[[plugins]]
+repo = 'joker1007/vim-ruby-heredoc-syntax'
 
 # -------------------------------------------------- python補完
 # [[plugins]]
@@ -167,6 +184,21 @@ repo = 'JuliaEditorSupport/julia-vim'
 repo = 'hashivim/vim-terraform'
 hook_source = """
   let g:terraform_fmt_on_save=1
+"""
+
+# -------------------------------------------------- ejs
+[[plugins]]
+repo = 'nikvdp/ejs-syntax'
+hook_source = """
+  autocmd BufNewFile,BufRead *.(ejs|_ejs|t) set filetype=ejs
+
+  function! s:DetectEjs()
+      if getline(1) =~ '^#!.*\<ejs\>'
+          set filetype=ejs
+      endif
+  endfunction
+
+  autocmd BufNewFile,BufRead * call s:DetectEjs()
 """
 
 # -------------------------------------------------- tabnine
@@ -232,6 +264,12 @@ repo = 'peitalin/vim-jsx-typescript'
 [[plugins]]
 repo = 'posva/vim-vue'
 
+[[plugins]]
+repo = 'yaegassy/coc-volar'
+
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+
 # ---------------------------------------------------- nginx color schemes
 [[plugins]]
 repo = 'chr4/nginx.vim'
@@ -245,6 +283,9 @@ repo = 'KeitaNakamura/neodark.vim'
 
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
+
+[[plugins]]
+repo = 'junegunn/seoul256.vim'
 
 # ------------------------------------------------ <Leader>c + なんかでコメントできるやーつ
 [[plugins]]
@@ -318,3 +359,13 @@ repo='godlygeek/tabular'
 repo = "puremourning/vimspector"
 on_ft = ["python", "javascript"]
 build = "./install_gadget.py --enable-python --force-enable-node"
+
+# -------------------------------------------------- filer
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+
+# ------------------------------------------------- definision
+[[plugins]]
+repo = 'liuchengxu/vista.vim'
