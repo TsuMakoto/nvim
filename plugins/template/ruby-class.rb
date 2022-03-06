@@ -2,6 +2,7 @@
 
 class Hoo
   def initialize(args)
+    @args = args
   end
 
   def call
